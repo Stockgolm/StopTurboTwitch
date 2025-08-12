@@ -1,7 +1,7 @@
 function getElementByXPath(xpath) {
     return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 }
-const clickXPath = "/html/body/div[1]/div/div[1]/div/main/div[1]/div/div[2]/div/div[2]/div/div[4]/div[1]/div/div[4]/div/div[1]/button";
+const clickXPath = "//*[@id='root']/div/div[1]/div/main/div[1]/div/div[2]/div/div[2]/div/div[4]/div[1]/div/div[5]/div/div[1]/button";
 let removed = false;
 const removeAdFreeButton = () => {
     if (removed) return;
