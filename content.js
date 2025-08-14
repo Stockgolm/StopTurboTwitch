@@ -1,7 +1,10 @@
 function getElementByXPath(xpath) {
     return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 }
-const clickXPath = "//*[@id='root']/div/div[1]/div/main/div[1]/div/div[2]/div/div[2]/div/div[4]/div[1]/div/div[5]/div/div[1]/button";
+const clickXPaths = [
+    "//*[@id='root']/div/div[1]/div/main/div[1]/div/div[2]/div/div[2]/div/div[4]/div[1]/div/div[5]/div/div[1]/button",
+    "/html/body/div[1]/div/div[1]/div/main/div[1]/div/div[2]/div/div[2]/div/div[4]/div[1]/div/div[4]/div/div[1]/button"
+];
 let removed = false;
 const removeAdFreeButton = () => {
     if (removed) return;
@@ -19,9 +22,11 @@ const removeInterval = setInterval(() => {
     if (removed) clearInterval(removeInterval);
 }, 500);
 const clickLoop = setInterval(() => {
-    const button = getElementByXPath(clickXPath);
-    if (button) {
-        button.click();
-    } else {
+    for (const path of clickXPaths) {
+        const button = getElementByXPath(path);
+        if (button) {
+            button.click();
+            return;
+        }
     }
 }, 1000);
