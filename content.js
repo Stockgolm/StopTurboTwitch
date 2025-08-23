@@ -31,3 +31,24 @@ const clickLoop = setInterval(() => {
         }
     }
 }, 1000);
+const volumeSlider = document.querySelector('[data-a-target="player-volume-slider"]');
+if (volumeSlider) {
+    volumeSlider.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        let volume = parseFloat(volumeSlider.value);
+        if (event.deltaY < 0) {
+            volume += 0.01;
+        } else {
+            volume -= 0.01;
+        }
+        volume = Math.min(1, Math.max(0, volume));
+        volumeSlider.value = volume;
+        const fill = volumeSlider.parentElement.querySelector('[data-test-selector="tw-range__fill-value-selector"]');
+        if (fill) fill.style.width = `${volume * 100}%`;
+        volumeSlider.dispatchEvent(new Event('input', { bubbles: true }));
+        volumeSlider.dispatchEvent(new Event('change', { bubbles: true }));
+        if (window.Twitch?.Player) {
+            const player = window.Twitch.Player ? window.Twitch.Player : null;
+        }
+    });
+}
