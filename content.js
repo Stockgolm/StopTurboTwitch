@@ -31,7 +31,7 @@ const clickLoop = setInterval(() => {
         }
     }
 }, 1000);
-const volumeSlider = document.querySelector('[data-a-target="player-volume-slider"]');
+const volumeSlider = document.querySelector('[data-a-target*="player-volume-slider"]');
 if (volumeSlider) {
     volumeSlider.addEventListener('wheel', (event) => {
         event.preventDefault();
